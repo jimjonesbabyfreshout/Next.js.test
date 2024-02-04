@@ -1,8 +1,13 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+// Implement middleware for flexible request-response handling
+const requestResponseMiddleware = (Component: React.ComponentType<AppProps>) => {
+  return (props: AppProps) => <Component {...props} />;
+};
+
+// Apply middleware using TypeScript decorators
+@requestResponseMiddleware
+export default function MyApp({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />;
 }
-
-export default MyApp
